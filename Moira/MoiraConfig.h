@@ -73,6 +73,17 @@
  */
 #define MOIRA_BUILD_INSTR_INFO_TABLE true
 
+/* Set to true to compile only the 68000 instruction handlers.
+ *
+ * The handler templates are instantiated for three cores (68000, 68010,
+ * 68020+), and the 68010 and 68020 cores make up about two thirds of the
+ * code. With this option, the jump table is always built for the 68000,
+ * whatever model is selected. Meant for 68000-only machines.
+ *
+ * Enable to save space.
+ */
+#define MOIRA_68000_ONLY false
+
 /* Enables Musashi compatibility mode.
  *
  * When set to true, Moira runs in a special mode designed for compatibility

@@ -171,6 +171,11 @@ Moira::createJumpTable(Model cpuModel, Model dasmModel)
     Core cpuCore = core(cpuModel);
     Core dasmCore = core(dasmModel);
 
+#if MOIRA_68000_ONLY
+    // Only the 68000 handlers are compiled in (see MOIRA_68000_ONLY)
+    (void)cpuCore; (void)dasmCore;
+    createJumpTable<Core::C68000>(Model::M68000, true);
+#else
     // Register handlers based on the dasm model
     if (dasmCore == Core::C68000) createJumpTable<Core::C68000>(dasmModel, true);
     if (dasmCore == Core::C68010) createJumpTable<Core::C68010>(dasmModel, true);
@@ -183,6 +188,7 @@ Moira::createJumpTable(Model cpuModel, Model dasmModel)
         if (cpuCore == Core::C68010) createJumpTable<Core::C68010>(cpuModel, false);
         if (cpuCore == Core::C68020) createJumpTable<Core::C68020>(cpuModel, false);
     }
+#endif
 }
 
 template <Core C> void
