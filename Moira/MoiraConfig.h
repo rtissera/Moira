@@ -84,6 +84,17 @@
  */
 #define MOIRA_68000_ONLY false
 
+/* Set to false to leave out the 68010 instruction handlers.
+ *
+ * The 68010 core is about a third of the handler code. A host that never
+ * selects a 68010 model (for example, one that runs 68000 and 68020 CPUs)
+ * does not need it. With this option off, a 68010 model gets the 68000
+ * jump table.
+ *
+ * Disable to save space.
+ */
+#define MOIRA_WITH_68010 true
+
 /* Enables Musashi compatibility mode.
  *
  * When set to true, Moira runs in a special mode designed for compatibility
